@@ -46,15 +46,26 @@ function modalAcceptClick() {
       caption: postCaption,
       comments : emptyComments
     });
-    console.log(requestBody);
-    allPosts.push({
-      author: postAuthor,
-      url: postURL,
-      caption: postCaption
-    });
 
+    request.setRequestHeader(
+      'Content-Type',
+      'application/json'
+    );
+
+      request.addEventListener('load',function(event){
+      if(event.target.status === 200){
+        var postTemplate = Handlebars.templates.post;
+        var newPost = postTemplate({
+          author : postAuthor,
+          url : postURL,
+          caption : postCaption
+        });
+      }});
+
+    allPosts.insertAdjacentHTML('beforeend',newPost);
     clearSearch();
     hidePostModal();
+    clearPostInputValues();
   } else {
     alert('Cannot upload an incomplete post!')
   }
@@ -71,10 +82,12 @@ function comModalAcceptClick(postNum) {
       commentText: commentTxt,
       commentAuthor: commentAuthor
     });
+    clearSearch();
+    hideCommentModal();
+    clearCommentInputValues();
   } else {
     alert('Cannot upload an incomplete comment!')
   }
-  hideCommentModal();
 }
 
 function clearSearch() {
@@ -262,26 +275,17 @@ window.addEventListener('DOMContentLoaded', function () {
         toggle(event.target)
       });
 
-      console.log(tmp);
-      commentShow.addEventListener('click', function(){
-        console.log("Calling toggleComments with this val :",tmp); 
-        toggleComments(tmp-1);
-      });
+      commentShow.addEventListener('click',toggleComments.bind(tmp));
 
-      addCommentButton.addEventListener('click', function(){
-        showCommentModal();
-      });
+      commentShow.addEventListener('click',showCommentModal.bind(tmp));
       
 
-      deleteButton.addEventListener('click', function(){
-        var tmp = event.target;
-        console.log("event target",event.target);
-        deletePost();
-      });
+      deleteButton.addEventListener('click', deletePost.bind(tmp));
       //jump to the next set of four buttons
       i += 4;
-      tmp ++;
+      
     }
+    tmp++;
   }
 
 });
@@ -298,8 +302,8 @@ function toggle(likeButton) {
   }
 }
 
-function deletePost(){
-  console.log('You are deleting post', postFromButton);
-  console.log(allPosts[postFromButton]);
-  document.removeChild(allPosts[postFromButton]);
+function deletePost(index){
+  console.log('You are deleting post', index);
+  console.log(allPosts[index]);
+  document.removeChild(allPosts[index]);
 }
