@@ -1,0 +1,31 @@
+      <article class="post">
+        <div class="post-icon">
+          <!-- Probably going to be changed in the future.-->
+          <i class="fas fa-camera"></i>
+        </div>
+        <p class="post-author">
+            {{author}}
+        </p>
+        <div class="delete">
+          <button type="button" id="delete-button"><i class="fa fa-trash"></i></button>
+        </div>
+        <div class="post-content">
+          <img src="{{url}}" class="post-image">
+          <p class="post-caption">
+            {{caption}}
+          </p>
+        </div>
+        <div class="like-button-container">
+          <button type="button" id="likeButton"><i class="far fa-heart"></i></button>
+        </div>
+        <button type="button" id="comment-expand-button"><i class="fa fa-comments"></i></button>
+        <button type="button" id="comment-respond-button"><i class="fa fa-comment"></i></button>
+        <div class="comments-section">
+          <div class="post-container">
+         {{#each data}}
+               {{>comment}}
+          {{/each}}
+          </div>
+         
+        </div>
+      </article>

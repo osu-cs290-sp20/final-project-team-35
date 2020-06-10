@@ -1,0 +1,33 @@
+{
+  "name": "CS290-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "buildMain": "handlebars views/layouts/main.handlebars -f public/mainTemplate.handlebars",
+    "build404": "handlebars views/partials/404.handlebars -f public/404Template.handlebars",
+    "buildPostContainer": "handlebars views/partials/postContainer.handlebars -f public/postContainerTemplate.handlebars",
+    "buildPost": "handlebars views/partials/post.handlebars -f public/postTemplate.js",
+    "buildComment": "handlebars views/partials/comment.handlebars -f public/commentTemplate.handlebars",
+    "buildHeader": "handlebars views/partials/header.handlebars -f public/headerTemplate.handlebars",
+    "prestart": "npm run buildMain && npm run build404 && npm run buildPostContainer && npm run buildPost && npm run buildComment && npm run buildHeader"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjrad/CS290-project.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "handlebars": "^4.7.6"
+  },
+  "devDependencies": {}
+}
