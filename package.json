@@ -1,5 +1,5 @@
 {
-  "name": "CS290-project",
+  "name": "final-project-team-35",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mjrad/CS290-project.git"
+    "url": "git+https://github.com/osu-cs290-sp20/final-project-team-35.git"
   },
   "author": "",
   "license": "MIT",
